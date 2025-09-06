@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Tienda</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f0f0f0; }
+    h1 { text-align: center; }
+    .producto {
+      background: white; 
+      border: 1px solid #ddd; 
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 350px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .producto img { max-width: 100%; border-radius: 8px; }
+    .precio { font-size: 22px; color: #2c7; margin: 10px 0; }
+    .botones { margin-top: 15px; }
+    .botones button {
+      background: #0070ba; 
+      color: white; 
+      border: none; 
+      padding: 10px 15px; 
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .botones button:hover { background: #005a94; }
+    .stripe { background: #635bff; }
+    .stripe:hover { background: #5146d8; }
+  </style>
+</head>
+<body>
+  <h1>Bienvenido a Mi Tienda</h1>
+
+  <!-- Producto 1 -->
+  <div class="producto">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Hairdryer_2005-10-30.jpg/320px-Hairdryer_2005-10-30.jpg" alt="Föhn - secador de pelo">
+    <h2>Föhn (Secador de Pelo)</h2>
+    <p class="precio">60 €</p>
+    <div class="botones">
+      <!-- Botón PayPal -->
+      <form action="https://www.paypal.com/ncp/payment/TU_LINK_DE_PAYPAL_FOHN" method="post" target="_blank">
+        <button type="submit">Comprar con PayPal</button>
+      </form>
+      <!-- Botón Stripe -->
+      <a href="https://buy.stripe.com/TU_LINK_STRIPE_FOHN" target="_blank">
+        <button type="button" class="stripe">Pagar con tarjeta / iDEAL</button>
+      </a>
+    </div>
+  </div>
+
+  <!-- Producto 2 -->
+  <div class="producto">
+    <img src="https://m.media-amazon.com/images/I/71oYwBBXfPL._AC_SL1500_.jpg" alt="Máquina quita callos">
+    <h2>Máquina Quita Callos</h2>
+    <p class="precio">30 €</p>
+    <div class="botones">
+      <!-- Botón PayPal -->
+      <form action="https://www.paypal.com/ncp/payment/TU_LINK_DE_PAYPAL_CALLOS" method="post" target="_blank">
+        <button type="submit">Comprar con PayPal</button>
+      </form>
+      <!-- Botón Stripe -->
+      <a href="https://buy.stripe.com/TU_LINK_STRIPE_CALLOS" target="_blank">
+        <button type="button" class="stripe">Pagar con tarjeta / iDEAL</button>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
