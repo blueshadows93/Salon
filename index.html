@@ -19,7 +19,7 @@
     }
     .producto img { max-width: 100%; border-radius: 8px; }
     .precio { font-size: 22px; color: #2c7; margin: 10px 0; }
-    .botones { margin-top: 15px; }
+    .botones { margin-top: 15px; text-align: center; }
     .botones button {
       background: #25D366; 
       color: white; 
@@ -64,7 +64,7 @@
   </div>
 
   <!-- Botón único de pedido -->
-  <div class="botones" style="text-align:center;">
+  <div class="botones">
     <a id="btn-pedido" href="#" target="_blank">
       <button type="button">Hacer pedido por WhatsApp</button>
     </a>
@@ -85,12 +85,14 @@
       }
 
       const total = (fohn * 60) + (callos * 30);
-
       let mensaje = 'Hola, quiero hacer el siguiente pedido:%0A';
+      
       if (fohn > 0) mensaje += `${fohn} Föhn (Secador de Pelo)%0A`;
       if (callos > 0) mensaje += `${callos} Máquina Quita Callos%0A`;
+
       mensaje += `Total: ${total}€`;
 
+      // Actualiza el enlace de WhatsApp dinámicamente
       btnPedido.href = `https://wa.me/31630779939?text=${mensaje}`;
     });
   </script>
