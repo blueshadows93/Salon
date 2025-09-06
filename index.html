@@ -47,51 +47,51 @@
 
   <!-- Producto 1 -->
   <div class="producto">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Hairdryer_2005-10-30.jpg/320px-Hairdryer_2005-10-30.jpg" alt="Föhn - secador de pelo">
+    <img src="imagenes/fohn.jpg" alt="Föhn - secador de pelo">
     <h2>Föhn (Secador de Pelo)</h2>
     <p class="precio">60 €</p>
     <label for="cantidad-fohn">Cantidad:</label>
-    <input type="number" id="cantidad-fohn" value="1" min="1">
-    <div class="botones">
-      <a id="btn-fohn" href="#" target="_blank">
-        <button type="button">Hacer pedido</button>
-      </a>
-    </div>
+    <input type="number" id="cantidad-fohn" value="0" min="0">
   </div>
 
   <!-- Producto 2 -->
   <div class="producto">
-    <img src="https://m.media-amazon.com/images/I/71oYwBBXfPL._AC_SL1500_.jpg" alt="Máquina quita callos">
+    <img src="imagenes/callos.jpg" alt="Máquina quita callos">
     <h2>Máquina Quita Callos</h2>
     <p class="precio">30 €</p>
     <label for="cantidad-callos">Cantidad:</label>
-    <input type="number" id="cantidad-callos" value="1" min="1">
-    <div class="botones">
-      <a id="btn-callos" href="#" target="_blank">
-        <button type="button">Hacer pedido</button>
-      </a>
-    </div>
+    <input type="number" id="cantidad-callos" value="0" min="0">
+  </div>
+
+  <!-- Botón único de pedido -->
+  <div class="botones" style="text-align:center;">
+    <a id="btn-pedido" href="#" target="_blank">
+      <button type="button">Hacer pedido por WhatsApp</button>
+    </a>
   </div>
 
   <script>
-    const btnFohn = document.getElementById('btn-fohn');
+    const btnPedido = document.getElementById('btn-pedido');
     const cantidadFohn = document.getElementById('cantidad-fohn');
-
-    btnFohn.addEventListener('click', () => {
-      const cantidad = cantidadFohn.value;
-      const total = cantidad * 60; // precio del Föhn
-      const mensaje = `Hola, quiero ${cantidad} Föhn (Secador de Pelo) por ${total}€`;
-      btnFohn.href = `https://wa.me/31630779939?text=${encodeURIComponent(mensaje)}`;
-    });
-
-    const btnCallos = document.getElementById('btn-callos');
     const cantidadCallos = document.getElementById('cantidad-callos');
 
-    btnCallos.addEventListener('click', () => {
-      const cantidad = cantidadCallos.value;
-      const total = cantidad * 30; // precio de la máquina quita callos
-      const mensaje = `Hola, quiero ${cantidad} Máquina Quita Callos por ${total}€`;
-      btnCallos.href = `https://wa.me/31630779939?text=${encodeURIComponent(mensaje)}`;
+    btnPedido.addEventListener('click', () => {
+      const fohn = parseInt(cantidadFohn.value) || 0;
+      const callos = parseInt(cantidadCallos.value) || 0;
+
+      if (fohn === 0 && callos === 0) {
+        alert('Por favor, selecciona al menos un producto.');
+        return;
+      }
+
+      const total = (fohn * 60) + (callos * 30);
+
+      let mensaje = 'Hola, quiero hacer el siguiente pedido:%0A';
+      if (fohn > 0) mensaje += `${fohn} Föhn (Secador de Pelo)%0A`;
+      if (callos > 0) mensaje += `${callos} Máquina Quita Callos%0A`;
+      mensaje += `Total: ${total}€`;
+
+      btnPedido.href = `https://wa.me/31630779939?text=${mensaje}`;
     });
   </script>
 </body>
