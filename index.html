@@ -8,13 +8,12 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background-image: url('salon.webp'); /* fondo del salón */
+      background-image: url('salon.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       color: #fff;
     }
-
     h1 { text-align: center; margin-top: 20px; }
 
     .producto {
@@ -55,6 +54,9 @@
     }
     .botones button:hover { background: #1ebe57; }
 
+    #btn-tikkie { background: #635bff; }
+    #btn-tikkie:hover { background: #5146d8; }
+
     input[type="number"], input[type="text"] {
       width: 80%;
       padding: 8px;
@@ -70,7 +72,14 @@
       font-weight: bold;
       text-align: center;
       margin-top: 10px;
-      color: black;
+      color: yellow;
+    }
+
+    #tikkie-instruction {
+      font-size: 14px;
+      color: white;
+      text-align: center;
+      margin-top: 5px;
     }
 
     @media (max-width: 400px) {
@@ -111,16 +120,19 @@
     <p id="subtotal">Subtotal: 0 €</p>
   </div>
 
-  <!-- Botón único de pedido -->
+  <!-- Botones -->
   <div class="botones">
     <a id="btn-pedido" href="#" target="_blank" rel="noopener">
       <button type="button">Hacer pedido por WhatsApp</button>
     </a>
+    <a id="btn-tikkie" href="TU_LINK_TIKKIE" target="_blank">
+      <button type="button">Pagar en línea</button>
+    </a>
+    <p id="tikkie-instruction">Cuando abras el enlace, introduce el subtotal mostrado arriba para pagar correctamente.</p>
   </div>
 
-  <!-- Carga del stock -->
+  <!-- Scripts -->
   <script src="stock.js?v=3"></script>
-
   <script>
     const btnPedido = document.getElementById('btn-pedido');
     const cantidadFohn = document.getElementById('cantidad-fohn');
@@ -174,7 +186,7 @@
     cantidadFohn.addEventListener('input', actualizarSubtotal);
     cantidadCallos.addEventListener('input', actualizarSubtotal);
 
-    // Botón de WhatsApp
+    // Botón WhatsApp
     btnPedido.addEventListener('click', () => {
       const fohn = parseInt(cantidadFohn.value) || 0;
       const callos = parseInt(cantidadCallos.value) || 0;
