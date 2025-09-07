@@ -1,4 +1,6 @@
+// stock.js
+// Edita aquí las cantidades disponibles
 const stock = {
-  fohn: 10,   // ahora quedan 2 secadores
-  callos: 10  // agotado
+  fohn: 2,   // Föhn disponibles
+  callos: 0  // Máquinas quita callos disponibles
 };
