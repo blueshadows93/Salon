@@ -32,6 +32,17 @@
     .precio { font-size: 22px; color: #2c7; margin: 10px 0; }
     .stock { font-size: 14px; font-weight: bold; margin: 5px 0; }
 
+    .cliente {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 20px auto;
+      max-width: 350px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      color: #000;
+    }
+
     .botones { margin-top: 15px; text-align: center; }
     .botones button {
       background: #25D366;
@@ -44,15 +55,27 @@
     }
     .botones button:hover { background: #1ebe57; }
 
-    input[type="number"] {
-      width: 60px;
-      padding: 5px;
+    input[type="number"], input[type="text"] {
+      width: 80%;
+      padding: 8px;
       margin-top: 5px;
+      margin-bottom: 10px;
       text-align: center;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #subtotal {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      color: yellow;
     }
 
     @media (max-width: 400px) {
       .producto { max-width: 90%; }
+      .cliente { max-width: 90%; }
       .botones button { width: 100%; }
     }
   </style>
@@ -80,6 +103,14 @@
     <input type="number" id="cantidad-callos" value="0" min="0">
   </div>
 
+  <!-- Datos del cliente -->
+  <div class="cliente">
+    <h3>Tus datos</h3>
+    <label for="nombre">Nombre y Apellido:</label>
+    <input type="text" id="nombre" placeholder="Escribe tu nombre completo">
+    <p id="subtotal">Subtotal: 0 €</p>
+  </div>
+
   <!-- Botón único de pedido -->
   <div class="botones">
     <a id="btn-pedido" href="#" target="_blank" rel="noopener">
@@ -87,8 +118,8 @@
     </a>
   </div>
 
-  <!-- Carga del stock con "cache-buster" para evitar caché -->
-  <script src="stock.js?v=1"></script>
+  <!-- Carga del stock -->
+  <script src="stock.js?v=3"></script>
 
   <script>
     const btnPedido = document.getElementById('btn-pedido');
@@ -96,66 +127,85 @@
     const cantidadCallos = document.getElementById('cantidad-callos');
     const stockFohnSpan = document.getElementById('stock-text-fohn');
     const stockCallosSpan = document.getElementById('stock-text-callos');
+    const nombreCliente = document.getElementById('nombre');
+    const subtotalEl = document.getElementById('subtotal');
 
-    // Si stock.js no cargó, avisar y no seguir
-    if (typeof stock === 'undefined') {
-      stockFohnSpan.textContent = "⚠️ No se pudo cargar stock.js";
-      stockFohnSpan.style.color = "red";
-      stockCallosSpan.textContent = "⚠️ No se pudo cargar stock.js";
-      stockCallosSpan.style.color = "red";
-    } else {
-      // Función para mostrar stock y bloquear si está agotado
-      function aplicarStock(span, input, cantidad) {
-        if (cantidad <= 0) {
-          span.textContent = "AGOTADO";
-          span.style.color = "red";
-          input.value = 0;
-          input.disabled = true;
-          input.max = 0;
-        } else {
-          span.textContent = (cantidad === 1)
-            ? "1 unidad disponible"
-            : cantidad + " unidades disponibles";
-          span.style.color = "#555";
-          input.disabled = false;
-          input.max = cantidad;
-          // Si alguien escribe por encima del stock, lo recortamos
-          input.addEventListener('input', () => {
-            const n = parseInt(input.value) || 0;
-            if (n > cantidad) input.value = cantidad;
-            if (n < 0) input.value = 0;
-          });
-        }
+    // Recuperar nombre guardado en localStorage
+    if(localStorage.getItem('nombreCliente')) {
+      nombreCliente.value = localStorage.getItem('nombreCliente');
+    }
+
+    function aplicarStock(span, input, cantidad) {
+      if (cantidad <= 0) {
+        span.textContent = "AGOTADO";
+        span.style.color = "red";
+        input.value = 0;
+        input.disabled = true;
+        input.max = 0;
+      } else {
+        span.textContent = (cantidad === 1)
+          ? "1 unidad disponible"
+          : cantidad + " unidades disponibles";
+        span.style.color = "#555";
+        input.disabled = false;
+        input.max = cantidad;
+        input.addEventListener('input', () => {
+          const n = parseInt(input.value) || 0;
+          if (n > cantidad) input.value = cantidad;
+          if (n < 0) input.value = 0;
+          actualizarSubtotal();
+        });
+      }
+    }
+
+    function actualizarSubtotal() {
+      const fohn = parseInt(cantidadFohn.value) || 0;
+      const callos = parseInt(cantidadCallos.value) || 0;
+      const total = (fohn * 60) + (callos * 30);
+      subtotalEl.textContent = `Subtotal: ${total} €`;
+    }
+
+    // Mostrar stock inicial
+    aplicarStock(stockFohnSpan, cantidadFohn, stock.fohn);
+    aplicarStock(stockCallosSpan, cantidadCallos, stock.callos);
+    actualizarSubtotal();
+
+    // Actualizar subtotal al cambiar cantidad
+    cantidadFohn.addEventListener('input', actualizarSubtotal);
+    cantidadCallos.addEventListener('input', actualizarSubtotal);
+
+    // Botón de WhatsApp
+    btnPedido.addEventListener('click', () => {
+      const fohn = parseInt(cantidadFohn.value) || 0;
+      const callos = parseInt(cantidadCallos.value) || 0;
+      const nombre = nombreCliente.value.trim();
+
+      if (!nombre) {
+        alert("Por favor, escribe tu nombre y apellido.");
+        return;
       }
 
-      // Aplicar stock inicial
-      aplicarStock(stockFohnSpan, cantidadFohn, stock.fohn);
-      aplicarStock(stockCallosSpan, cantidadCallos, stock.callos);
+      // Guardar nombre en localStorage
+      localStorage.setItem('nombreCliente', nombre);
 
-      // Botón de WhatsApp
-      btnPedido.addEventListener('click', () => {
-        const fohn = parseInt(cantidadFohn.value) || 0;
-        const callos = parseInt(cantidadCallos.value) || 0;
+      if (fohn === 0 && callos === 0) {
+        alert('Por favor, selecciona al menos un producto.');
+        return;
+      }
 
-        if (fohn === 0 && callos === 0) {
-          alert('Por favor, selecciona al menos un producto.');
-          return;
-        }
+      if (fohn > stock.fohn || callos > stock.callos) {
+        alert('No hay suficiente stock disponible.');
+        return;
+      }
 
-        if (fohn > (stock.fohn || 0) || callos > (stock.callos || 0)) {
-          alert('No hay suficiente stock disponible.');
-          return;
-        }
+      const total = (fohn * 60) + (callos * 30);
+      let mensaje = `Hola, soy ${nombre}, quiero hacer el siguiente pedido:%0A`;
+      if (fohn > 0) mensaje += `${fohn} Föhn (Secador de Pelo)%0A`;
+      if (callos > 0) mensaje += `${callos} Máquina Quita Callos%0A`;
+      mensaje += `Total: ${total}€`;
 
-        const total = (fohn * 60) + (callos * 30);
-        let mensaje = 'Hola, quiero hacer el siguiente pedido:%0A';
-        if (fohn > 0) mensaje += `${fohn} Föhn (Secador de Pelo)%0A`;
-        if (callos > 0) mensaje += `${callos} Máquina Quita Callos%0A`;
-        mensaje += `Total: ${total}€`;
-
-        btnPedido.href = `https://wa.me/31630779939?text=${mensaje}`;
-      });
-    }
+      btnPedido.href = `https://wa.me/31630779939?text=${mensaje}`;
+    });
   </script>
 </body>
 </html>
