@@ -1,28 +1,55 @@
 // Stock disponible
-const stock = { fohn: 10, callos: 10 };
+const stock = { 
+  fohn: 10, 
+  callos: 10, 
+  ampicilina: 10, 
+  tubi: 5 
+};
 
-// Elementos del DOM
+// Elementos
 const cantidadFohn = document.getElementById('cantidad-fohn');
 const cantidadCallos = document.getElementById('cantidad-callos');
+const cantidadAmpicilina = document.getElementById('cantidad-ampicilina');
+const cantidadTubi = document.getElementById('cantidad-tubi');
+
 const subtotalEl = document.getElementById('subtotal');
 const nombreCliente = document.getElementById('nombre');
 const btnWhatsapp = document.getElementById('btn-whatsapp');
+
+// Stock visible
 const stockFohnText = document.getElementById('stock-fohn');
 const stockCallosText = document.getElementById('stock-callos');
+const stockAmpicilinaText = document.getElementById('stock-ampicilina');
+const stockTubiText = document.getElementById('stock-tubi');
 
-// Actualizar stock visible
+// Actualizar stock
 function actualizarStock() {
-  if(stock.fohn<=0){ stockFohnText.textContent="AGOTADO"; cantidadFohn.value=0; cantidadFohn.disabled=true; }
-  else{ stockFohnText.textContent=`${stock.fohn} unidades disponibles`; cantidadFohn.disabled=false; cantidadFohn.max=stock.fohn; }
-
-  if(stock.callos<=0){ stockCallosText.textContent="AGOTADO"; cantidadCallos.value=0; cantidadCallos.disabled=true; }
-  else{ stockCallosText.textContent=`${stock.callos} unidades disponibles`; cantidadCallos.disabled=false; cantidadCallos.max=stock.callos; }
+  actualizarProducto(stock.fohn, stockFohnText, cantidadFohn);
+  actualizarProducto(stock.callos, stockCallosText, cantidadCallos);
+  actualizarProducto(stock.ampicilina, stockAmpicilinaText, cantidadAmpicilina);
+  actualizarProducto(stock.tubi, stockTubiText, cantidadTubi);
 }
 
-// Actualizar subtotal
+function actualizarProducto(cantidad, textoEl, inputEl) {
+  if(cantidad<=0){ 
+    textoEl.textContent="AGOTADO"; 
+    inputEl.value=0; 
+    inputEl.disabled=true; 
+  } else { 
+    textoEl.textContent=`${cantidad} unidades disponibles`; 
+    inputEl.disabled=false; 
+    inputEl.max=cantidad; 
+  }
+}
+
+// Subtotal dinámico
 function actualizarSubtotal() {
-  const total = (parseInt(cantidadFohn.value)||0)*60 + (parseInt(cantidadCallos.value)||0)*30;
+  const total = (parseInt(cantidadFohn.value)||0)*60 
+              + (parseInt(cantidadCallos.value)||0)*30
+              + (parseInt(cantidadAmpicilina.value)||0)*15
+              + (parseInt(cantidadTubi.value)||0)*20;
   subtotalEl.textContent = `Subtotal: ${total} €`;
+  return total;
 }
 
 // Validar inputs
@@ -39,13 +66,17 @@ actualizarStock();
 actualizarSubtotal();
 validarCantidad(cantidadFohn, stock.fohn);
 validarCantidad(cantidadCallos, stock.callos);
+validarCantidad(cantidadAmpicilina, stock.ampicilina);
+validarCantidad(cantidadTubi, stock.tubi);
 
 // WhatsApp
 btnWhatsapp.addEventListener('click',()=>{
   const nombre=nombreCliente.value.trim();
   const fohn=parseInt(cantidadFohn.value)||0;
   const callos=parseInt(cantidadCallos.value)||0;
-  const total=(fohn*60)+(callos*30);
+  const ampi=parseInt(cantidadAmpicilina.value)||0;
+  const tubi=parseInt(cantidadTubi.value)||0;
+  const total=actualizarSubtotal();
 
   if(!nombre){ alert("Escribe tu nombre"); return; }
   if(total<=0){ alert("Selecciona al menos un producto"); return; }
@@ -53,6 +84,8 @@ btnWhatsapp.addEventListener('click',()=>{
   let mensaje=`Hola, soy ${nombre}, quiero comprar:%0A`;
   if(fohn>0) mensaje+=`${fohn} Föhn (Secador de Pelo)%0A`;
   if(callos>0) mensaje+=`${callos} Máquina Quita Callos%0A`;
+  if(ampi>0) mensaje+=`${ampi} Ampicilina%0A`;
+  if(tubi>0) mensaje+=`${tubi} Tubi%0A`;
   mensaje+=`Total: ${total}€`;
 
   window.open(`https://wa.me/31630779939?text=${mensaje}`,'_blank');
@@ -61,12 +94,8 @@ btnWhatsapp.addEventListener('click',()=>{
 // PayPal Checkout dinámico
 paypal.Buttons({
   createOrder:(data,actions)=>{
-    const fohn=parseInt(cantidadFohn.value)||0;
-    const callos=parseInt(cantidadCallos.value)||0;
-    const total=(fohn*60)+(callos*30);
-
+    const total=actualizarSubtotal();
     if(total<=0){ alert("Selecciona al menos un producto"); return; }
-
     return actions.order.create({ purchase_units:[{amount:{value:total.toString()}}] });
   },
   onApprove:(data,actions)=>{
