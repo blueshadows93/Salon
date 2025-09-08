@@ -29,6 +29,7 @@
     #btn-pagar { background: #635bff; color: #fff; }
     #btn-whatsapp { background: #25D366; color: #fff; }
     img { max-width: 100%; border-radius: 8px; }
+    p.descripcion { font-size: 14px; color: #fff; margin-top: 5px; }
   </style>
 </head>
 <body>
@@ -59,8 +60,10 @@
 
   <!-- Botones -->
   <button id="btn-whatsapp">Hacer pedido por WhatsApp</button>
-  <button id="btn-pagar">Pagar en línea</button>
-  <p>El pago se abrirá en otra pestaña con el subtotal calculado.</p>
+  <p class="descripcion">Si quieres pagar en efectivo o contant, realiza tu pedido por WhatsApp y acordamos el pago.</p>
+
+  <button id="btn-pagar">Pagar con PayPal</button>
+  <p class="descripcion">Haz clic para pagar online con el subtotal calculado.</p>
 
   <script src="stock.js"></script>
 </body>
