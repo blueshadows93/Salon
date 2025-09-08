@@ -36,7 +36,8 @@ btnWhatsapp.addEventListener('click', () => {
   if (callos > 0) mensaje += `${callos} Máquina Quita Callos%0A`;
   mensaje += `Total: ${total}€`;
 
-  btnWhatsapp.href = `https://wa.me/31630779939?text=${mensaje}`;
+  // Abre WhatsApp con el mensaje
+  window.open(`https://wa.me/31630779939?text=${mensaje}`, '_blank');
 });
 
 // Botón PayPal dinámico
