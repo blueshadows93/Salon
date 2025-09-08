@@ -46,8 +46,8 @@ function actualizarProducto(cantidad, textoEl, inputEl) {
 function actualizarSubtotal() {
   const total = (parseInt(cantidadFohn.value)||0)*60 
               + (parseInt(cantidadCallos.value)||0)*30
-              + (parseInt(cantidadAmpicilina.value)||0)*15
-              + (parseInt(cantidadTubi.value)||0)*20;
+              + (parseInt(cantidadAmpicilina.value)||0)*10   // Ampicilina ahora 10 €
+              + (parseInt(cantidadTubi.value)||0)*5;        // Tubi ahora 5 €
   subtotalEl.textContent = `Subtotal: ${total} €`;
   return total;
 }
@@ -84,7 +84,7 @@ btnWhatsapp.addEventListener('click',()=>{
   let mensaje=`Hola, soy ${nombre}, quiero comprar:%0A`;
   if(fohn>0) mensaje+=`${fohn} Föhn (Secador de Pelo)%0A`;
   if(callos>0) mensaje+=`${callos} Máquina Quita Callos%0A`;
-  if(ampi>0) mensaje+=`${ampi} Ampicilina%0A`;
+  if(ampi>0) mensaje+=`${ampi} sobres de Ampicilina%0A`;   // cambiado a sobres
   if(tubi>0) mensaje+=`${tubi} Tubi%0A`;
   mensaje+=`Total: ${total}€`;
 
