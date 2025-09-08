@@ -50,6 +50,6 @@ btnPagar.addEventListener('click', () => {
   if (total <= 0) { alert("Selecciona al menos un producto"); return; }
 
   // Link PayPal dinámico
-  const paypalLink = `https://www.paypal.me/robertcroes/${total}`;
+  const paypalLink = `https://www.paypal.me/TUUSUARIO/${total}`;
   window.open(paypalLink, '_blank');
 });
