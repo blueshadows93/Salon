@@ -5,36 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mi Tienda</title>
   <style>
-    body { font-family: Arial; color: #fff; text-align: center; background-image: url('salon.webp'); background-size: cover; background-position: center; background-attachment: fixed; }
-    .producto, .cliente { background: #fff; color: #000; padding: 15px; margin: 15px auto; max-width: 350px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-    .precio { font-size: 22px; color: #2c7; margin: 10px 0; }
+    body {
+      font-family: Arial;
+      color: #fff;
+      text-align: center;
+      background-image: url('salon.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+    }
+
+    .productos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      padding: 10px;
+      justify-items: center;
+    }
+
+    .producto, .cliente {
+      background: #fff;
+      color: #000;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      width: 160px;
+      text-align: center;
+    }
+
+    .precio { font-size: 20px; color: #2c7; margin: 10px 0; }
     input[type="number"], input[type="text"] { width: 80%; padding: 8px; margin: 5px 0; border-radius: 5px; }
-    button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; width: 200px; }
     #btn-whatsapp { background: #25D366; color: #fff; }
     img { max-width: 100%; border-radius: 8px; }
     .stock-text { font-size: 14px; color: #555; margin-bottom: 5px; }
     p.descripcion { font-size: 14px; color: #fff; margin-top: 5px; }
+
+    #botones-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    #paypal-button-container {
+      width: 200px;
+    }
   </style>
 </head>
 <body>
   <h1>Bienvenido a Mi Tienda</h1>
 
-  <!-- Producto 1 -->
-  <div class="producto">
-    <img src="fohn.jpg" alt="Föhn - Secador de Pelo">
-    <h2>Föhn (Secador de Pelo)</h2>
-    <p class="precio">60 €</p>
-    <p class="stock-text" id="stock-fohn"></p>
-    <label>Cantidad: <input type="number" id="cantidad-fohn" value="0" min="0"></label>
-  </div>
+  <div class="productos-container">
+    <!-- Producto 1 -->
+    <div class="producto">
+      <img src="fohn.jpg" alt="Föhn - Secador de Pelo">
+      <h2>Föhn</h2>
+      <p class="precio">60 €</p>
+      <p class="stock-text" id="stock-fohn"></p>
+      <label>Cantidad: <input type="number" id="cantidad-fohn" value="0" min="0"></label>
+    </div>
 
-  <!-- Producto 2 -->
-  <div class="producto">
-    <img src="callus.webp" alt="Máquina Quita Callos">
-    <h2>Máquina Quita Callos</h2>
-    <p class="precio">30 €</p>
-    <p class="stock-text" id="stock-callos"></p>
-    <label>Cantidad: <input type="number" id="cantidad-callos" value="0" min="0"></label>
+    <!-- Producto 2 -->
+    <div class="producto">
+      <img src="callus.webp" alt="Máquina Quita Callos">
+      <h2>Máquina Quita Callos</h2>
+      <p class="precio">30 €</p>
+      <p class="stock-text" id="stock-callos"></p>
+      <label>Cantidad: <input type="number" id="cantidad-callos" value="0" min="0"></label>
+    </div>
   </div>
 
   <!-- Datos del cliente -->
@@ -45,15 +87,14 @@
   </div>
 
   <!-- Botones -->
-  <button id="btn-whatsapp">Hacer pedido por WhatsApp</button>
-  <p class="descripcion">Si quieres pagar en efectivo o contant, realiza tu pedido por WhatsApp y acordamos el pago.</p>
-
-  <!-- Contenedor PayPal -->
-  <div id="paypal-button-container"></div>
-  <p class="descripcion">Haz clic en PayPal para pagar online el subtotal calculado.</p>
+  <div id="botones-container">
+    <button id="btn-whatsapp">WhatsApp</button>
+    <div id="paypal-button-container"></div>
+  </div>
+  <p class="descripcion">Si quieres pagar en efectivo o contant, usa WhatsApp. PayPal para pago online.</p>
 
   <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AdvuW5KsEQrm8v51MrW411bS__5yoM0xXHqeRw2wkld7UjV3nVWWdEEjA879ZKGpb5cfQvFD1gIOdTUh&currency=EUR"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AdhvwQN73y9OeVZexBTUq6g18lGojZ4LM4VfJ6JjrDex0hkWeEq26ZxfcvTEeUOZOHQ5fX8ddJmmZi57&currency=EUR"></script>
   <script src="stock.js"></script>
 </body>
 </html>
