@@ -6,216 +6,62 @@
   <title>Mi Tienda</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
+      font-family: Arial;
+      color: #fff;
+      text-align: center;
       background-image: url('salon.webp');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      color: #fff;
     }
-    h1 { text-align: center; margin-top: 20px; }
-
-    .producto {
-      background: white;
-      border-radius: 8px;
-      padding: 15px;
-      margin: 20px auto;
-      max-width: 350px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    .producto, .cliente {
+      background: #fff;
       color: #000;
+      padding: 15px;
+      margin: 15px auto;
+      max-width: 350px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-
-    .producto img { max-width: 100%; border-radius: 8px; }
     .precio { font-size: 22px; color: #2c7; margin: 10px 0; }
-    .stock { font-size: 14px; font-weight: bold; margin: 5px 0; }
-
-    .cliente {
-      background: white;
-      border-radius: 8px;
-      padding: 15px;
-      margin: 20px auto;
-      max-width: 350px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      color: #000;
-    }
-
-    .botones { margin-top: 15px; text-align: center; }
-    .botones button {
-      background: #25D366;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 5px;
-    }
-    .botones button:hover { background: #1ebe57; }
-
-    #btn-tikkie { background: #635bff; }
-    #btn-tikkie:hover { background: #5146d8; }
-
-    input[type="number"], input[type="text"] {
-      width: 80%;
-      padding: 8px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      text-align: center;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    #subtotal {
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-      color: yellow;
-    }
-
-    #tikkie-instruction {
-      font-size: 14px;
-      color: white;
-      text-align: center;
-      margin-top: 5px;
-    }
-
-    @media (max-width: 400px) {
-      .producto { max-width: 90%; }
-      .cliente { max-width: 90%; }
-      .botones button { width: 100%; }
-    }
+    input[type="number"], input[type="text"] { width: 80%; padding: 8px; margin: 5px 0; border-radius: 5px; }
+    button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    #btn-pagar { background: #635bff; color: #fff; }
+    #btn-whatsapp { background: #25D366; color: #fff; }
+    img { max-width: 100%; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <h1>Bienvenido a Mi Salon</h1>
+  <h1>Bienvenido a Mi Tienda</h1>
 
   <!-- Producto 1 -->
   <div class="producto">
-    <img src="fohn.jpg" alt="Föhn - secador de pelo">
+    <img src="fohn.jpg" alt="Föhn - Secador de Pelo">
     <h2>Föhn (Secador de Pelo)</h2>
     <p class="precio">60 €</p>
-    <p class="stock" id="stock-text-fohn"></p>
-    <label for="cantidad-fohn">Cantidad:</label>
-    <input type="number" id="cantidad-fohn" value="0" min="0">
+    <label>Cantidad: <input type="number" id="cantidad-fohn" value="0" min="0"></label>
   </div>
 
   <!-- Producto 2 -->
   <div class="producto">
-    <img src="callus.webp" alt="Máquina quita callos">
+    <img src="callus.webp" alt="Máquina Quita Callos">
     <h2>Máquina Quita Callos</h2>
     <p class="precio">30 €</p>
-    <p class="stock" id="stock-text-callos"></p>
-    <label for="cantidad-callos">Cantidad:</label>
-    <input type="number" id="cantidad-callos" value="0" min="0">
+    <label>Cantidad: <input type="number" id="cantidad-callos" value="0" min="0"></label>
   </div>
 
-  <!-- Datos del cliente -->
+  <!-- Cliente -->
   <div class="cliente">
-    <h3>Tus datos</h3>
-    <label for="nombre">Nombre y Apellido:</label>
-    <input type="text" id="nombre" placeholder="Escribe tu nombre completo">
+    <h3>Datos del cliente</h3>
+    <label>Nombre: <input type="text" id="nombre"></label>
     <p id="subtotal">Subtotal: 0 €</p>
   </div>
 
   <!-- Botones -->
-  <div class="botones">
-    <a id="btn-pedido" href="#" target="_blank" rel="noopener">
-      <button type="button">Hacer pedido por WhatsApp</button>
-<!-- Botón de pago SumUp -->
-<button id="btn-pagar">Pagar en línea</button>
-<p id="pago-instruccion">El pago se abrirá en otra pestaña con el subtotal calculado.</p>
-  </div>
+  <button id="btn-whatsapp">Hacer pedido por WhatsApp</button>
+  <button id="btn-pagar">Pagar en línea</button>
+  <p id="pago-instruccion">El pago se abrirá en otra pestaña con el subtotal calculado.</p>
 
-  <!-- Scripts -->
-  <script src="stock.js?v=3"></script>
-  <script>
-    const btnPedido = document.getElementById('btn-pedido');
-    const cantidadFohn = document.getElementById('cantidad-fohn');
-    const cantidadCallos = document.getElementById('cantidad-callos');
-    const stockFohnSpan = document.getElementById('stock-text-fohn');
-    const stockCallosSpan = document.getElementById('stock-text-callos');
-    const nombreCliente = document.getElementById('nombre');
-    const subtotalEl = document.getElementById('subtotal');
-
-    // Recuperar nombre guardado en localStorage
-    if(localStorage.getItem('nombreCliente')) {
-      nombreCliente.value = localStorage.getItem('nombreCliente');
-    }
-
-    function aplicarStock(span, input, cantidad) {
-      if (cantidad <= 0) {
-        span.textContent = "AGOTADO";
-        span.style.color = "red";
-        input.value = 0;
-        input.disabled = true;
-        input.max = 0;
-      } else {
-        span.textContent = (cantidad === 1)
-          ? "1 unidad disponible"
-          : cantidad + " unidades disponibles";
-        span.style.color = "#555";
-        input.disabled = false;
-        input.max = cantidad;
-        input.addEventListener('input', () => {
-          const n = parseInt(input.value) || 0;
-          if (n > cantidad) input.value = cantidad;
-          if (n < 0) input.value = 0;
-          actualizarSubtotal();
-        });
-      }
-    }
-
-    function actualizarSubtotal() {
-      const fohn = parseInt(cantidadFohn.value) || 0;
-      const callos = parseInt(cantidadCallos.value) || 0;
-      const total = (fohn * 60) + (callos * 30);
-      subtotalEl.textContent = `Subtotal: ${total} €`;
-    }
-
-    // Mostrar stock inicial
-    aplicarStock(stockFohnSpan, cantidadFohn, stock.fohn);
-    aplicarStock(stockCallosSpan, cantidadCallos, stock.callos);
-    actualizarSubtotal();
-
-    // Actualizar subtotal al cambiar cantidad
-    cantidadFohn.addEventListener('input', actualizarSubtotal);
-    cantidadCallos.addEventListener('input', actualizarSubtotal);
-
-    // Botón WhatsApp
-    btnPedido.addEventListener('click', () => {
-      const fohn = parseInt(cantidadFohn.value) || 0;
-      const callos = parseInt(cantidadCallos.value) || 0;
-      const nombre = nombreCliente.value.trim();
-
-      if (!nombre) {
-        alert("Por favor, escribe tu nombre y apellido.");
-        return;
-      }
-
-      // Guardar nombre en localStorage
-      localStorage.setItem('nombreCliente', nombre);
-
-      if (fohn === 0 && callos === 0) {
-        alert('Por favor, selecciona al menos un producto.');
-        return;
-      }
-
-      if (fohn > stock.fohn || callos > stock.callos) {
-        alert('No hay suficiente stock disponible.');
-        return;
-      }
-
-      const total = (fohn * 60) + (callos * 30);
-      let mensaje = `Hola, soy ${nombre}, quiero hacer el siguiente pedido:%0A`;
-      if (fohn > 0) mensaje += `${fohn} Föhn (Secador de Pelo)%0A`;
-      if (callos > 0) mensaje += `${callos} Máquina Quita Callos%0A`;
-      mensaje += `Total: ${total}€`;
-
-      btnPedido.href = `https://wa.me/31630779939?text=${mensaje}`;
-    });
-  </script>
+  <script src="stock.js"></script>
 </body>
 </html>
