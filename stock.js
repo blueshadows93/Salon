@@ -1,9 +1,11 @@
 // stock.js
-// Edita aquí las cantidades disponibles
-const stock = {
-  fohn: 10,   // Föhn disponibles
-  callos: 10  // Máquinas quita callos disponibles
-};
+const stock = { fohn: 10, callos: 10 };
+
+// Variables de los inputs
+const nombreCliente = document.getElementById('nombre');
+const cantidadFohn = document.getElementById('cantidad-fohn');
+const cantidadCallos = document.getElementById('cantidad-callos');
+
 const btnPagar = document.getElementById('btn-pagar');
 
 btnPagar.addEventListener('click', async () => {
