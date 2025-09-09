@@ -3,96 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kapsalon Mediterráneo</title>
+  <title>Kapsalon Mediterráneo - Productos</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f5f5;
-    }
-
-    /* ====== MENÚ ====== */
-    nav.menu {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-    }
-    nav.menu ul {
-      list-style: none;
-      margin: 0;
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-    }
-    nav.menu li {
-      margin: 0 15px;
-    }
-    nav.menu a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    nav.menu a:hover {
-      color: #ffdf80;
-    }
-
-    /* ====== INICIO ====== */
-    .inicio {
+      font-family: Arial, sans-serif;
       background-image: url('salon.webp');
       background-size: cover;
       background-position: center;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-attachment: fixed;
+      color: #000;
+    }
+
+    /* ====== MENÚ ====== */
+    nav {
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      position: sticky;
+      top: 0;
       text-align: center;
-      color: white;
-      position: relative;
     }
-    .inicio::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-    }
-    .inicio::after {
-      content: "";
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 0; right: 0;
-      border-left: 5px solid #ffdf80;
-      border-right: 5px solid #ffdf80;
-      opacity: 0.7;
-    }
-    .overlay {
-      position: relative;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 800px;
-      animation: fadeIn 2s ease-in;
-    }
-    h1 {
-      font-size: 38px;
-      margin-bottom: 15px;
-      color: #ffdf80;
-    }
-    .frase {
-      font-size: 20px;
-      font-style: italic;
-      line-height: 1.5;
-    }
-    .frase2 {
-      font-size: 22px;
-      margin-top: 15px;
-      font-weight: bold;
+    nav a {
       color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    nav a:hover {
+      text-decoration: underline;
     }
 
     /* ====== PRODUCTOS ====== */
@@ -105,7 +43,7 @@
       padding: 0 20px;
     }
     .producto {
-      background: white;
+      background: rgba(255,255,255,0.95);
       border-radius: 10px;
       padding: 15px;
       text-align: center;
@@ -137,7 +75,7 @@
 
     /* ====== CLIENTE ====== */
     .cliente {
-      background: white;
+      background: rgba(255,255,255,0.95);
       border-radius: 10px;
       padding: 15px;
       margin: 20px auto;
@@ -177,37 +115,17 @@
 </head>
 <body>
 
-  <!-- ====== MENÚ ====== -->
-  <nav class="menu">
-    <ul>
-      <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
+  <!-- Menú de navegación -->
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="index.html">Productos</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="contacto.html">Contacto</a>
   </nav>
-
-  <!-- ====== INICIO ====== -->
-  <section id="inicio" class="inicio">
-    <div class="overlay">
-      <h1>Bienvenido a Kapsalon Mediterráneo</h1>
-      <p class="frase">
-        En Kapsalon Mediterráneo no solo cuidamos tu belleza exterior, sino también la paz de tu interior. 
-        Un lugar donde puedes relajarte como en un santuario mientras reflejamos la obra perfecta de Dios en ti.
-      </p>
-      <p class="frase2">Un salón para tu cabello, un santuario para tu alma ✨</p>
-    </div>
-  </section>
-
-  <!-- ====== SERVICIOS ====== -->
-  <section id="servicios">
-    <h2 style="text-align:center; margin-top:50px;">Servicios</h2>
-    <p style="text-align:center;">(Aquí pondremos los servicios del salón...)</p>
-  </section>
 
   <!-- ====== PRODUCTOS ====== -->
   <section id="productos">
-    <h2 style="text-align:center; margin-top:50px;">Productos</h2>
+    <h2 style="text-align:center; margin-top:20px; color: white;">Productos</h2>
     <div class="productos-grid">
       <!-- Producto 1 -->
       <div class="producto">
@@ -232,9 +150,9 @@
         <img src="ampicilina.webp" alt="Ampicilina por sobres">
         <h3>Ampicilina (por sobres)</h3>
         <p class="precio">10 €</p>
-        <p class="stock" id="stock-text-ampi"></p>
-        <label for="cantidad-ampi">Cantidad:</label>
-        <input type="number" id="cantidad-ampi" value="0" min="0">
+        <p class="stock" id="stock-text-amp"></p>
+        <label for="cantidad-amp">Cantidad:</label>
+        <input type="number" id="cantidad-amp" value="0" min="0">
       </div>
       <!-- Producto 4 -->
       <div class="producto">
@@ -264,14 +182,8 @@
     </div>
   </section>
 
-  <!-- ====== CONTACTO ====== -->
-  <section id="contacto">
-    <h2 style="text-align:center; margin-top:50px;">Contacto</h2>
-    <p style="text-align:center;">(Aquí pondremos el formulario y el ícono de WhatsApp...)</p>
-  </section>
-
   <!-- ====== SCRIPTS ====== -->
   <script src="https://www.paypal.com/sdk/js?client-id=AdhvwQN73y9OeVZexBTUq6g18lGojZ4LM4VfJ6JjrDex0hkWeEq26ZxfcvTEeUOZOHQ5fX8ddJmmZi57&currency=EUR"></script>
-  <script src="stock.js?v=4"></script>
+  <script src="stock.js?v=6"></script>
 </body>
 </html>
