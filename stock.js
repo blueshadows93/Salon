@@ -1,17 +1,16 @@
-// stock.js
 // Stock disponible de cada producto
 const stock = {
-  fohn: 10,          // Föhn disponibles
-  callos: 10,        // Máquinas quita callos
-  resfridol: 10,     // Resfridol (paquete de 2 sobres)
-  tubi: 5            // Tubi disponibles
+  fohn: 10,
+  callos: 10,
+  resfridol: 10, // Resfridol (paquete de 2 sobres)
+  tubi: 5
 };
 
 // Precios de los productos
 const precios = {
   fohn: 60,
   callos: 30,
-  resfridol: 5,      // Precio por 2 sobres de Resfridol
+  resfridol: 5,  // Precio por 2 sobres de Resfridol
   tubi: 5
 };
 
@@ -26,13 +25,13 @@ const inputs = {
   tubi: document.getElementById('cantidad-tubi')
 };
 
-// Mostrar stock disponible en la página
+// Mostrar stock disponible
 document.getElementById('stock-fohn').textContent = `Disponibles: ${stock.fohn}`;
 document.getElementById('stock-callos').textContent = `Disponibles: ${stock.callos}`;
 document.getElementById('stock-resfridol').textContent = `Disponibles: ${stock.resfridol}`;
 document.getElementById('stock-tubi').textContent = `Disponibles: ${stock.tubi}`;
 
-// Función para calcular subtotal
+// Calcular subtotal
 function calcularSubtotal() {
   let subtotal = 0;
   for (const producto in inputs) {
@@ -43,7 +42,7 @@ function calcularSubtotal() {
   return subtotal;
 }
 
-// Escuchar cambios en inputs para actualizar subtotal
+// Escuchar cambios en inputs
 for (const producto in inputs) {
   inputs[producto].addEventListener('input', calcularSubtotal);
 }
@@ -68,7 +67,7 @@ document.getElementById('btn-whatsapp').addEventListener('click', () => {
 
   mensaje += `\n${subtotalEl.textContent}`;
 
-  const telefono = "TU_NUMERO"; // <-- pon aquí tu número de WhatsApp con código de país
+  const telefono = "31630779939"; // <-- reemplaza con tu número real
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 });
