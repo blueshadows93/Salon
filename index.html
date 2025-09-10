@@ -37,7 +37,7 @@
     /* Banner principal */
     .banner {
       background: url('A3B2FE89-04F1-464B-8CE0-3C623DD7212B.png') center/cover no-repeat;
-      height: 70vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -72,20 +72,23 @@
       max-width: 600px;
     }
 
-    /* Galería de fotos */
+    /* Galería de fotos encima del fondo */
     .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 15px;
-      padding: 20px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 30px 10px;
       max-width: 1000px;
-      margin: 0 auto;
+      margin: -80px auto 0 auto; /* Levanta las fotos sobre el fondo */
+      position: relative;
+      z-index: 2;
     }
 
     .galeria img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
     }
 
     /* Botón de contacto */
@@ -101,6 +104,8 @@
       cursor: pointer;
       text-decoration: none;
       text-align: center;
+      z-index: 2;
+      position: relative;
     }
 
     .contacto-btn:hover {
@@ -110,6 +115,7 @@
     @media (max-width: 500px) {
       .banner h1 { font-size: 2em; }
       .banner p { font-size: 1em; }
+      .galeria img { width: 90%; max-width: 300px; }
     }
   </style>
 </head>
@@ -129,14 +135,14 @@
     <p>En Kapsalon Mediterráneo no solo cuidamos tu belleza exterior, sino también la paz de tu interior. Un lugar donde puedes relajarte como en un santuario mientras reflejamos la obra perfecta de Dios en ti.</p>
   </section>
 
-  <!-- Galería de fotos -->
+  <!-- Galería de fotos encima del fondo -->
   <section class="galeria">
     <img src="espejosalon.PNG" alt="Interior del salón con espejos y sillas">
     <img src="kapsalon.png" alt="Vista exterior del salón">
   </section>
 
   <!-- Botón de contacto -->
-  <a href="contacto.html" class="contacto-btn">Contáctanos</a>
+  <a href="contacto.html" class="contacto-btn">Reserva tu cita / Contáctanos</a>
 
 </body>
 </html>
