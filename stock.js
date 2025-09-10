@@ -50,27 +50,45 @@ for (const producto in inputs) {
 // Botón WhatsApp
 document.getElementById('btn-whatsapp').addEventListener('click', () => {
   const nombre = nombreCliente.value.trim();
-  if (!nombre) { alert("Escribe tu nombre"); return; }
+  if (!nombre) { 
+    alert("Escribe tu nombre"); 
+    return; 
+  }
 
-  let mensaje = `Hola, soy ${nombre} y quiero pedir:\n`;
+  let mensaje = `Hola, soy ${nombre}, quiero hacer el siguiente pedido:\n`;
   let hayProductos = false;
+
+  // Nombres bonitos para mostrar en el mensaje
+  const nombresBonitos = {
+    fohn: "Föhn (Secador de Pelo)",
+    callos: "Máquina Quita Callos",
+    resfridol: "Resfridol (2 sobres)",
+    tubi: "Tubi"
+  };
 
   for (const producto in inputs) {
     const cantidad = parseInt(inputs[producto].value) || 0;
     if (cantidad > 0) {
-      mensaje += `- ${cantidad} ${producto}\n`;
+      mensaje += `${cantidad} ${nombresBonitos[producto]}\n`;
       hayProductos = true;
     }
   }
 
-  if (!hayProductos) { alert("Selecciona al menos un producto"); return; }
+  if (!hayProductos) { 
+    alert("Selecciona al menos un producto"); 
+    return; 
+  }
 
-  mensaje += `\n${subtotalEl.textContent}`;
+  // Agregar el total al final
+  const subtotal = calcularSubtotal();
+  mensaje += `Total: ${subtotal} €`;
 
-  const telefono = "31630779939"; // <-- reemplaza con tu número real
+  // WhatsApp
+  const telefono = "31612345678"; // <-- pon tu número con código de país
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 });
+
 
 // PayPal
 paypal.Buttons({
