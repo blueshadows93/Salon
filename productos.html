@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Tienda - Productos</title>
+  <title>Mi Tienda</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,27 +17,6 @@
       padding: 0;
     }
 
-    /* ====== MENÚ ====== */
-    nav {
-      background: rgba(0,0,0,0.7);
-      padding: 10px;
-      position: sticky;
-      top: 0;
-      text-align: center;
-      z-index: 10;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* ====== PRODUCTOS ====== */
     .productos-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -45,7 +24,7 @@
       padding: 15px;
       justify-items: center;
       max-width: 800px;
-      margin: 20px auto 0 auto;
+      margin: 0 auto;
     }
 
     .producto {
@@ -57,12 +36,12 @@
       width: 160px;
       text-align: center;
     }
+
     .precio { font-size: 18px; color: #2c7; margin: 10px 0; }
     input[type="number"], input[type="text"] { width: 80%; padding: 6px; margin: 5px 0; border-radius: 5px; }
     img { max-width: 100%; border-radius: 8px; }
     .stock-text { font-size: 14px; color: #555; margin-bottom: 5px; }
 
-    /* ====== CLIENTE ====== */
     .cliente {
       background: rgba(255,255,255,0.9);
       color: #000;
@@ -71,9 +50,9 @@
       border-radius: 8px;
       max-width: 400px;
     }
+
     .cliente h3 { margin-top: 0; }
 
-    /* ====== BOTONES ====== */
     #botones-container {
       display: flex;
       justify-content: center;
@@ -81,6 +60,7 @@
       margin: 10px 0;
       flex-wrap: wrap;
     }
+
     #btn-whatsapp {
       background: #25D366;
       color: #fff;
@@ -90,24 +70,19 @@
       cursor: pointer;
       width: 200px;
     }
+
     #paypal-button-container {
       width: 200px;
     }
-    p.descripcion { font-size: 14px; color: #fff; margin-top: 5px; }
+
+    p.descripcion {
+      font-size: 14px;
+      color: #fff;
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
-
-  <!-- MENÚ -->
- <nav>
-  <a href="index.html">Inicio</a>
-  <a href="productos.html">Productos</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="contacto.html">Contacto</a>
-</nav>
-
-  </nav>
-
   <h1>Bienvenido a Mi Tienda</h1>
 
   <div class="productos-container">
@@ -119,6 +94,7 @@
       <p class="stock-text" id="stock-fohn"></p>
       <label>Cantidad: <input type="number" id="cantidad-fohn" value="0" min="0"></label>
     </div>
+
     <!-- Producto 2 -->
     <div class="producto">
       <img src="callus.webp" alt="Máquina Quita Callos">
@@ -127,14 +103,16 @@
       <p class="stock-text" id="stock-callos"></p>
       <label>Cantidad: <input type="number" id="cantidad-callos" value="0" min="0"></label>
     </div>
-    <!-- Producto 3 -->
+
+    <!-- Producto 3 (Resfridol en lugar de Ampicilina) -->
     <div class="producto">
-      <img src="resfridol.jpeg" alt="resfridol">
-      <h2>resfridol(2 sobres)</h2>
+      <img src="resfridol.webp" alt="Resfridol (2 sobres)">
+      <h2>Resfridol (2 sobres)</h2>
       <p class="precio">5 €</p>
       <p class="stock-text" id="stock-resfridol"></p>
       <label>Cantidad: <input type="number" id="cantidad-resfridol" value="0" min="0"></label>
     </div>
+
     <!-- Producto 4 -->
     <div class="producto">
       <img src="tubi.webp" alt="Tubi">
@@ -145,6 +123,7 @@
     </div>
   </div>
 
+  <!-- Datos cliente + botones -->
   <div class="cliente">
     <h3>Datos del cliente</h3>
     <label>Nombre: <input type="text" id="nombre" placeholder="Escribe tu nombre"></label>
@@ -159,7 +138,7 @@
   <p class="descripcion">Si quieres pagar en efectivo o contant, usa WhatsApp. PayPal es para pago online.</p>
 
   <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AdhvwQN73y9OeVZexBTUq6g18lGojZ4LM4VfJ6JjrDex0hkWeEq26ZxfcvTEeUOZOHQ5fX8ddJmmZi57&currency=EUR"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=EUR"></script>
   <script src="stock.js"></script>
 </body>
 </html>
