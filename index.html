@@ -3,76 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kapsalon Mediterráneo - Inicio</title>
+  <title>BeautySalon & Toko Mediterráneo</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url('A3B2FE89-04F1-464B-8CE0-3C623DD7212B.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
       color: #fff;
-      text-align: center;
     }
 
+    /* Menú superior */
     nav {
       background: rgba(0,0,0,0.7);
-      padding: 10px;
       position: sticky;
       top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
     }
 
     nav a {
       color: #fff;
-      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
+      font-size: 16px;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
 
-    .contenido {
-      margin-top: 80px;
-      padding: 20px;
+    /* Banner principal */
+    .banner {
+      background: url('A3B2FE89-04F1-464B-8CE0-3C623DD7212B.png') center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
     }
 
-    h1 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
-
-    p.frase {
-      font-size: 20px;
-      max-width: 600px;
-      margin: 0 auto;
+    .banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.5);
-      padding: 15px;
+      z-index: 1;
+    }
+
+    .banner h1, .banner p {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+    }
+
+    .banner h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .banner p {
+      font-size: 1.3em;
+      max-width: 600px;
+    }
+
+    /* Galería de fotos */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 15px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .galeria img {
+      width: 100%;
       border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Botón de contacto */
+    .contacto-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 15px 25px;
+      background-color: #25D366;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .contacto-btn:hover {
+      background-color: #1ebe57;
+    }
+
+    @media (max-width: 500px) {
+      .banner h1 { font-size: 2em; }
+      .banner p { font-size: 1em; }
     }
   </style>
 </head>
 <body>
-  <!-- Menú de navegación -->
- <nav>
-  <a href="index.html">Inicio</a>
-  <a href="productos.html">Productos</a>
-  <a href="servicios.html">Servicios</a>
-  <a href="contacto.html">Contacto</a>
-</nav>
 
+  <!-- Menú superior -->
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="productos.html">Productos</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="contacto.html">Contacto</a>
   </nav>
 
-  <!-- Contenido principal -->
-  <div class="contenido">
-    <h1>Bienvenido a Kapsalon Mediterráneo</h1>
-    <p class="frase">
-      En Kapsalon Mediterráneo no solo cuidamos tu belleza exterior, 
-      sino también la paz de tu interior. Un lugar donde puedes relajarte 
-      como en un santuario mientras reflejamos la obra perfecta de Dios en ti. ✨
-    </p>
-  </div>
+  <!-- Banner principal -->
+  <section class="banner">
+    <h1>Bienvenido a BeautySalon & Toko Mediterráneo</h1>
+    <p>En Kapsalon Mediterráneo no solo cuidamos tu belleza exterior, sino también la paz de tu interior. Un lugar donde puedes relajarte como en un santuario mientras reflejamos la obra perfecta de Dios en ti.</p>
+  </section>
+
+  <!-- Galería de fotos -->
+  <section class="galeria">
+    <img src="espejosalon.PNG" alt="Interior del salón con espejos y sillas">
+    <img src="kapsalon.png" alt="Vista exterior del salón">
+  </section>
+
+  <!-- Botón de contacto -->
+  <a href="contacto.html" class="contacto-btn">Contáctanos</a>
+
 </body>
 </html>
