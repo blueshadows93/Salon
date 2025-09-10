@@ -84,7 +84,7 @@ document.getElementById('btn-whatsapp').addEventListener('click', () => {
   mensaje += `Total: ${subtotal} €`;
 
   // WhatsApp
-  const telefono = "31612345678"; // <-- pon tu número con código de país
+  const telefono = "31630779939"; // <-- pon tu número con código de país
   const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, '_blank');
 });
