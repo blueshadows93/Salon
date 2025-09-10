@@ -46,7 +46,7 @@ function actualizarProducto(cantidad, textoEl, inputEl) {
 function actualizarSubtotal() {
   const total = (parseInt(cantidadFohn.value)||0)*60 
               + (parseInt(cantidadCallos.value)||0)*30
-              + (parseInt(cantidadAmpicilina.value)||0)*10   // Ampicilina ahora 10 €
+              + (parseInt(cantidadAmpicilina.value)||0)*5// Ampicilina ahora 10 €
               + (parseInt(cantidadTubi.value)||0)*5;        // Tubi ahora 5 €
   subtotalEl.textContent = `Subtotal: ${total} €`;
   return total;
