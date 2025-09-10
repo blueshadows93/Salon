@@ -12,7 +12,7 @@ const precios = {
   fohn: 60,
   callos: 30,
   resfridol: 5,      // Precio por 2 sobres de Resfridol
-  tubi: 20
+  tubi: 5
 };
 
 const nombreCliente = document.getElementById('nombre');
