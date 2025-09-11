@@ -95,28 +95,25 @@
     <a href="servicios.html">Servicios / Services</a>
   </nav>
 
-  <form id="contacto-form" action="https://formsubmit.co/robertcroes1993@hotmail.com" method="POST">
-    <!-- Nombre -->
-    <input type="text" name="name" placeholder="Nombre / Name" required>
+<form id="contacto-form" action="https://formsubmit.co/TU_CORREO@example.com" method="POST" onsubmit="mostrarMensaje()">
+  <input type="text" name="name" placeholder="Nombre / Name" required>
+  <input type="email" name="email" placeholder="Correo / Email" required>
+  <input type="tel" name="telefono" placeholder="Número de celular / Phone number" required>
+  <textarea name="message" placeholder="Mensaje / Message" required></textarea>
+  <button type="submit">Enviar / Send</button>
+</form>
 
-    <!-- Correo -->
-    <input type="email" name="email" placeholder="Correo / Email" required>
+<p class="mensaje-enviado" id="mensaje-enviado">
+  ¡Mensaje enviado! / Message sent 📬 Gracias por contactarnos / Thank you for contacting us.
+</p>
 
-    <!-- Número de celular -->
-    <input type="tel" name="telefono" placeholder="Número de celular / Phone number" required>
-
-    <!-- Mensaje -->
-    <textarea name="message" placeholder="Mensaje / Message" required></textarea>
-
-    <!-- Submit -->
-    <button type="submit">Enviar / Send</button>
-  </form>
-
-  <p class="mensaje-enviado" id="mensaje-enviado">
-    ¡Mensaje enviado! / Message sent 📬 Gracias por contactarnos / Thank you for contacting us.
-  </p>
-
-  <script>
+<script>
+function mostrarMensaje() {
+  const mensaje = document.getElementById('mensaje-enviado');
+  mensaje.style.display = 'block';
+  // No hacemos preventDefault para que el formulario se envíe realmente
+}
+</script>
     const form = document.getElementById('contacto-form');
     const mensaje = document.getElementById('mensaje-enviado');
 
