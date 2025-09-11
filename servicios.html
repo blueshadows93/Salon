@@ -345,27 +345,29 @@
 <style>
 .galeria {
   text-align: center;
-  margin: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin: 50px 0;
 }
 
 .trabajo {
   position: relative;
-  width: 300px; /* ancho total del bloque */
-  margin: 40px auto;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .foto-antes img {
   width: 100%;
-  height: auto;
-  display: block;
   border-radius: 8px;
 }
 
 .foto-despues {
   position: absolute;
-  top: -40px; /* desplaza hacia arriba solapando el antes */
-  left: -5%;
-  width: 110%; /* un poco más grande que el antes */
+  top: -20px;   /* desplaza hacia arriba */
+  right: -10px; /* desplaza hacia la derecha */
+  width: 110%;  /* un poco más grande que el antes */
   z-index: 2;
 }
 
@@ -387,7 +389,6 @@
   font-size: 14px;
 }
 </style>
-
 
 <!-- Clientes contentas -->
 <section class="clientes">
