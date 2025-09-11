@@ -141,7 +141,14 @@
     <img src="Pastorasalon.jpg" alt="Vista exterior del salón">
   </section>
 
-  <!-- Botón de contacto -->
+  <!-- Información del salón -->
+<div id="info-salon">
+  <p><strong>Horario:</strong> Lunes-Viernes: 10:00 - 18:00</p>
+  <p><strong>Sábado:</strong> 14:30 - 18:00 | <strong>Domingo:</strong> Cerrado</p>
+  <p><strong>Dirección:</strong> Pletterijkade 52A, 2515SH, 's-Gravenhage</p>
+</div>
+
+<!-- Botón de contacto -->
 <div id="contacto-container">
   <a href="contacto.html">
     <button id="btn-contacto">Contáctenos</button>
@@ -149,16 +156,25 @@
 </div>
 
 <style>
+#info-salon {
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 15px; /* espacio antes del botón */
+}
+#info-salon strong {
+  color: #FFD700; /* resalta horario y dirección */
+}
+
 #contacto-container {
   text-align: center;
-  margin: 20px 0;
 }
 
 #btn-contacto {
-  background-color: #25D366; /* verde estilo WhatsApp */
+  background-color: #25D366;
   color: white;
   border: none;
-  padding: 8px 12px;   /* tamaño más pequeño */
+  padding: 8px 12px;   
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
