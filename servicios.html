@@ -295,27 +295,99 @@
 <!-- Antes & Después -->
 <section class="galeria">
   <h2>Antes & Después</h2>
+
   <div class="trabajo">
-    <img src="Antes1.jpeg" alt="Antes 1">
-    <span class="flecha">➡️</span>
-    <img src="Despues1.jpeg" alt="Después 1">
+    <div class="foto-antes">
+      <img src="Antes1.jpeg" alt="Antes 1">
+      <span class="etiqueta">Antes</span>
+    </div>
+    <div class="foto-despues">
+      <img src="Despues1.jpeg" alt="Después 1">
+      <span class="etiqueta">Después</span>
+    </div>
   </div>
+
   <div class="trabajo">
-    <img src="Antes2.jpeg" alt="Antes 2">
-    <span class="flecha">➡️</span>
-    <img src="Despues2.jpeg" alt="Después 2">
+    <div class="foto-antes">
+      <img src="Antes2.jpeg" alt="Antes 2">
+      <span class="etiqueta">Antes</span>
+    </div>
+    <div class="foto-despues">
+      <img src="Despues2.jpeg" alt="Después 2">
+      <span class="etiqueta">Después</span>
+    </div>
   </div>
+
   <div class="trabajo">
-    <img src="Antes3.jpeg" alt="Antes 3">
-    <span class="flecha">➡️</span>
-    <img src="Despues3.jpeg" alt="Después 3">
+    <div class="foto-antes">
+      <img src="Antes3.jpeg" alt="Antes 3">
+      <span class="etiqueta">Antes</span>
+    </div>
+    <div class="foto-despues">
+      <img src="Despues3.jpeg" alt="Después 3">
+      <span class="etiqueta">Después</span>
+    </div>
   </div>
+
   <div class="trabajo">
-    <img src="Antes4.jpeg" alt="Antes 4">
-    <span class="flecha">➡️</span>
-    <img src="Despues4.jpeg" alt="Después 4">
+    <div class="foto-antes">
+      <img src="Antes4.jpeg" alt="Antes 4">
+      <span class="etiqueta">Antes</span>
+    </div>
+    <div class="foto-despues">
+      <img src="Despues4.jpeg" alt="Después 4">
+      <span class="etiqueta">Después</span>
+    </div>
   </div>
+
 </section>
+
+<style>
+.galeria {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.trabajo {
+  position: relative;
+  width: 300px; /* ancho total del bloque */
+  margin: 40px auto;
+}
+
+.foto-antes img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.foto-despues {
+  position: absolute;
+  top: -40px; /* desplaza hacia arriba solapando el antes */
+  left: -5%;
+  width: 110%; /* un poco más grande que el antes */
+  z-index: 2;
+}
+
+.foto-despues img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.etiqueta {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 4px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 14px;
+}
+</style>
+
 
 <!-- Clientes contentas -->
 <section class="clientes">
