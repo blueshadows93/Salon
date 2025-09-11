@@ -1,102 +1,111 @@
+<!-- contacto.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contacto - Beautysalon & Toko Mediterraneo</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    color: #fff;
-    text-align: center;
-    background-image: url('IMG_9039.png'); /* Foto de fondo */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Kapsalon Mediterráneo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('IMG_9039.png'); /* tu fondo */
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-  form {
-    background: rgba(0,0,0,0.6);
-    max-width: 400px;
-    margin: 50px auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    border-radius: 12px;
-  }
+    .form-container {
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 50px auto;
+    }
 
-  input, textarea, button {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-  }
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: none;
+    }
 
-  input, textarea {
-    width: 100%;
-  }
+    button {
+      background-color: #25D366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
 
-  textarea {
-    resize: vertical;
-  }
+    button:hover {
+      background-color: #1ebe57;
+    }
 
-  button {
-    background-color: #25D366;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  button:hover {
-    background-color: #1ebe57;
-  }
-
-  #mensaje-enviado {
-    display: none;
-    font-size: 20px;
-    font-weight: bold;
-    color: #FFD700;
-    margin-top: 20px;
-    background: rgba(0,0,0,0.7);
-    padding: 15px;
-    border-radius: 10px;
-  }
-</style>
+    .mensaje-enviado {
+      display: none;
+      margin-top: 15px;
+      color: #FFD700;
+      font-weight: bold;
+      font-size: 18px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
+  <h1>Contáctenos / Contact Us</h1>
+  <div class="form-container">
+    <form id="form-contacto" action="https://formsubmit.co/robertcroes1993@hotmail.com" method="POST">
+      <input type="hidden" name="_subject" value="📩 Nuevo mensaje desde la web Kapsalon Mediterráneo">
+      <input type="hidden" name="_captcha" value="false">
+      
+      <label>Nombre / Name:</label><br>
+      <input type="text" name="name" required placeholder="Escribe tu nombre"><br>
 
-<h1>Contáctenos / Contact Us</h1>
-<p>Déjanos tu mensaje y te responderemos lo antes posible / Leave your message and we will reply shortly.</p>
+      <label>Correo / Email:</label><br>
+      <input type="email" name="email" required placeholder="Tu correo"><br>
 
-<form id="contacto-form" action="https://formsubmit.co/robertcroes1993@hotmail.com" method="POST" target="_self" onsubmit="mostrarMensaje()">
-  <input type="text" name="name" placeholder="Nombre / Name" required>
-  <input type="email" name="email" placeholder="Correo / Email" required>
-  <input type="tel" name="telefono" placeholder="Número de celular / Phone number" required>
-  <textarea name="message" placeholder="Mensaje / Message" required></textarea>
+      <label>Teléfono / Phone:</label><br>
+      <input type="tel" name="telefono" required placeholder="Tu número de celular"><br>
 
-  <!-- Evitar redirección y captcha -->
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_subject" value="Nuevo mensaje desde la web Beautysalon & Toko Mediterraneo">
+      <label>Mensaje / Message:</label><br>
+      <textarea name="message" rows="5" required placeholder="Escribe tu mensaje aquí"></textarea><br>
 
-  <button type="submit">Enviar / Send</button>
-</form>
+      <button type="submit">Enviar / Send</button>
+    </form>
 
-<p id="mensaje-enviado">¡Mensaje enviado! / Message sent 📬 Gracias por contactarnos / Thank you for contacting us.</p>
+    <p class="mensaje-enviado" id="mensaje-enviado">
+      ¡Mensaje enviado! 📬 Gracias por contactarnos / Message sent! Thank you for contacting us.
+    </p>
+  </div>
 
-<script>
-function mostrarMensaje() {
-  const mensaje = document.getElementById('mensaje-enviado');
-  mensaje.style.display = 'block';
-  // Reseteamos el formulario después de un pequeño delay para que el usuario vea el mensaje
-  setTimeout(() => {
-    document.getElementById('contacto-form').reset();
-  }, 1000);
-}
-</script>
+  <script>
+    const form = document.getElementById('form-contacto');
+    const mensaje = document.getElementById('mensaje-enviado');
 
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // evita recargar la página
+      const action = form.getAttribute('action');
+      const data = new FormData(form);
+
+      fetch(action, {
+        method: 'POST',
+        body: data
+      }).then(() => {
+        mensaje.style.display = 'block';
+        form.reset();
+      }).catch(() => {
+        alert('Error al enviar el mensaje. Intenta nuevamente / Try again.');
+      });
+    });
+  </script>
 </body>
 </html>
