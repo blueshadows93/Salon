@@ -174,12 +174,14 @@
 }
 
 #galeria-salon .foto-grande img {
-  width: 400px; /* tamaño más grande */
-  height: auto;
+  width: 400px;       /* ancho fijo */
+  height: 300px;      /* altura fija para todas */
+  object-fit: cover;  /* recorta la imagen para que se ajuste bien */
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
 }
+
 
 #galeria-salon .foto-grande img:hover {
   transform: scale(1.05);
