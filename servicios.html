@@ -345,36 +345,34 @@
 <style>
 .galeria {
   text-align: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 40px;
   margin: 50px 0;
+  align-items: center;
 }
 
 .trabajo {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* espacio entre Antes y Después */
   position: relative;
-  width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
+  max-width: 700px;
+  width: 90%;
 }
 
-.foto-antes img {
+.foto-antes, .foto-despues {
+  position: relative;
+  width: 45%;
+}
+
+.foto-antes img, .foto-despues img {
   width: 100%;
   border-radius: 8px;
 }
 
 .foto-despues {
-  position: absolute;
-  top: -20px;   /* desplaza hacia arriba */
-  right: -10px; /* desplaza hacia la derecha */
-  width: 110%;  /* un poco más grande que el antes */
-  z-index: 2;
-}
-
-.foto-despues img {
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  transform: scale(1.1); /* un poco más grande que el antes */
 }
 
 .etiqueta {
@@ -389,7 +387,7 @@
   font-size: 14px;
 }
 </style>
-
+  
 <!-- Clientes contentas -->
 <section class="clientes">
   <h2>Clientes Contentas / Happy Clients</h2>
