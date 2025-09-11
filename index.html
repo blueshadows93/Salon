@@ -135,56 +135,89 @@
     <p>En Kapsalon Mediterráneo no solo cuidamos tu belleza exterior, sino también la paz de tu interior. Un lugar donde puedes relajarte como en un santuario mientras reflejamos la obra perfecta de Dios en ti.</p>
   </section>
 
-  <!-- Galería de fotos encima del fondo -->
-  <section class="galeria">
-    <img src="espejosalon.PNG" alt="Interior del salón con espejos y sillas">
-    <img src="Pastorasalon.jpg" alt="Vista exterior del salón">
-  </section>
+  <!-- Fotos del salón -->
+<section id="galeria-salon">
+  <div class="foto-grande">
+    <img src="espejosalon.PNG" alt="Interior del salón">
+  </div>
+  <div class="foto-grande">
+    <img src="kapsalon.png" alt="Exterior del salón">
+  </div>
+</section>
 
-  <!-- Información del salón -->
+<!-- Información del salón -->
 <div id="info-salon">
-  <p><strong>Horario:</strong> Lunes-Viernes: 10:00 - 18:00</p>
-  <p><strong>Sábado:</strong> 14:30 - 18:00 | <strong>Domingo:</strong> Cerrado</p>
-  <p><strong>Dirección:</strong> Pletterijkade 52A, 2515SH, 's-Gravenhage</p>
+  <p><strong>Horario / Opening Hours:</strong></p>
+  <p>Lunes - Viernes / Monday - Friday: 10:00 - 18:00</p>
+  <p>Sábado / Saturday: 14:30 - 18:00</p>
+  <p>Domingo / Sunday: Cerrado / Closed</p>
+  <br>
+  <p><strong>Dirección / Address:</strong></p>
+  <p>Pletterijkade 52A, 2515SH, 's-Gravenhage</p>
 </div>
 
 <!-- Botón de contacto -->
 <div id="contacto-container">
   <a href="contacto.html">
-    <button id="btn-contacto">Contáctenos</button>
+    <button id="btn-contacto">📩 Contáctenos / Contact Us</button>
   </a>
 </div>
 
 <style>
+/* Fotos más grandes */
+#galeria-salon {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+#galeria-salon .foto-grande img {
+  width: 400px; /* tamaño más grande */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+#galeria-salon .foto-grande img:hover {
+  transform: scale(1.05);
+}
+
+/* Horario + dirección con fondo oscuro */
 #info-salon {
   text-align: center;
   color: #ffffff;
-  font-size: 20px; /* letras más grandes */
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 15px;
-  background: rgba(0, 0, 0, 0.5); /* fade negro semitransparente */
-  padding: 15px;
+  margin: 20px auto;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
   border-radius: 10px;
-  display: inline-block;
+  max-width: 600px;
+  line-height: 1.6;
 }
 
 #info-salon strong {
-  color: #FFD700; /* resalta horarios y dirección */
+  color: #FFD700;
 }
 
+/* Botón contacto bilingüe */
 #contacto-container {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 #btn-contacto {
   background-color: #25D366;
   color: white;
   border: none;
-  padding: 8px 12px;   
-  border-radius: 5px;
+  padding: 12px 20px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #btn-contacto:hover {
